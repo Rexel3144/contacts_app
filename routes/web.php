@@ -11,6 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'ContactController@index');
+Route::resource('contact','ContactController');
+//Route::get('/contact/create','ContactController@create');
+//Route::post('/contact/store', ['uses' => 'ContactController@store', 'as'=>'contact.store']);
+
+Auth::routes();
+
+
