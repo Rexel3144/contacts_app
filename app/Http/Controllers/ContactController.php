@@ -6,6 +6,7 @@ use App\Contact;
 use App\Company;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+//use Carbon\Carbon;
 class ContactController extends Controller
 {
     
@@ -28,6 +29,10 @@ class ContactController extends Controller
     public function index()
     {
         $contacts = Auth::user()->contacts;
+        for($i = 0; $i<count($contacts);$i++){
+            //need remake by using carbon
+            $contacts[$i]->age = date('Y') - date('Y', strtotime($contacts[$i]->birthday));
+        }
         return view('contacts.index', compact('contacts'));
     }
 
