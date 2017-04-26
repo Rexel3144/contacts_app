@@ -13,6 +13,7 @@
 
 Route::get('/', 'ContactController@index');
 Route::resource('contact','ContactController');
+Route::post('/contact/{contact}/edit/part','ContactController@editPart');
 //Route::get('/contact/create','ContactController@create');
 //Route::post('/contact/store', ['uses' => 'ContactController@store', 'as'=>'contact.store']);
 
