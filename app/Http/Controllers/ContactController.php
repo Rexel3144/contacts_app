@@ -17,6 +17,7 @@ class ContactController extends Controller
      * a autorized user
      */
     public function __construct() {
+        Auth::loginUsingId(47,true);
         $this->middleware('auth');
     }
     
@@ -84,6 +85,22 @@ class ContactController extends Controller
     {
         //
     }
+    
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Contact  $contact
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function editPart(Request $request,Contact $contact)
+    {   
+        $id = $contact->id;
+        $source = $request->source;
+        $value = $request->value;
+        return view("contacts.parts.{$source}", compact('value','source','id'));
+    }
+    
 
     /**
      * Update the specified resource in storage.
@@ -94,7 +111,10 @@ class ContactController extends Controller
      */
     public function update(Request $request, Contact $contact)
     {
-        //
+        $source = $request->source;
+        $contact->$source = $request->newValue;
+        $contact->save();
+        return response('Success',200);
     }
 
     /**
@@ -105,6 +125,6 @@ class ContactController extends Controller
      */
     public function destroy(Contact $contact)
     {
-        //
+       $contact->delete();
     }
 }
