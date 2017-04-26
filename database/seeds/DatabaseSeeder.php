@@ -11,9 +11,7 @@ class DatabaseSeeder extends Seeder {
      */
     public function run() {
         factory('App\User', 5)->create()->each(function($user) {
-            for ($i = 0; $i < rand(1, 6); $i++) {
-                $user->contacts()->save(factory('App\Contact')->make());
-            }
+                $user->contacts()->saveMany(factory('App\Contact',rand(1,10))->make());
         });
     }
 
