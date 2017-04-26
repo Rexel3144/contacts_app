@@ -8,6 +8,18 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 class ContactController extends Controller
 {
+    
+    /**
+     * Using middleware auth,
+     * which provides access
+     * to methods for only
+     * a autorized user
+     */
+    public function __construct() {
+        $this->middleware('auth');
+    }
+    
+    
     /**
      * Display a listing of the resource.
      *
