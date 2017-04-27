@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Contact;
 use App\Company;
+//use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use App\Http\Requests\ContactRequest;
 use Illuminate\Support\Facades\Auth;
@@ -90,6 +91,9 @@ class ContactController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function editPart(Request $request, Contact $contact) {
+        if (!$this->authorize('update', $contact)) {
+            return response('Sorry you cant do that.', 403);
+        }
         $id = $contact->id;
         $source = $request->source;
         $value = $request->value;
@@ -106,12 +110,14 @@ class ContactController extends Controller {
     public function update(ContactRequest $request, Contact $contact) {
         $source = $request->source;
         $newValue = $request->newValue;
-        
+        if (!$this->authorize('update', $contact)) {
+            return response('Sorry you cant do that.', 403);
+        }
         //need remake this magic
         if ($source == 'company_name') {
             if (!is_null($newValue)) {
                 $newValue = Company::findIdByNameOrCreate($newValue);
-            } 
+            }
             $source = 'company_id';
         }
 
@@ -127,6 +133,9 @@ class ContactController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function destroy(Contact $contact) {
+        if(!$this->authorize('delete',$contact)){
+            return response('Sorry you cant do that.', 403);
+        }
         $contact->delete();
         return response('Success', 200);
     }

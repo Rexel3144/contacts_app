@@ -38,29 +38,37 @@
             <td data-source="name">
                 <div class="col-md-10 value">{{$contact->name}}</div>
                 <div class="col-md-2 text-right actions">
+                    @can('update',$contact)
                     <span class="glyphicon glyphicon-edit edit"></span>
                     <!--<span class="glyphicon glyphicon-remove remove"></span>-->
+                    @endcan
                 </div>
             </td>
             <td data-source="phone">
                 <div class="col-md-10 value">{{$contact->phone}}</div>
                 <div class="col-md-2 text-right actions">
+                    @can('update',$contact)
                     <span class="glyphicon glyphicon-edit edit"></span>
                     <!--<span class="glyphicon glyphicon-remove remove"></span>-->
+                    @endcan
                 </div>
             </td>
             <td data-source="email">
                 <div class="col-md-10 value">{{$contact->email}}</div>
                 <div class="col-md-2 text-right actions">
+                    @can('update',$contact)
                     <span class="glyphicon glyphicon-edit edit"></span>
                     <span class="glyphicon glyphicon-remove remove"></span>
+                    @endcan
                 </div>
             </td>
             <td data-source="address">
                 <div class="col-md-10 value">{{$contact->address}}</div>
                 <div class="col-md-2 text-right actions">
+                    @can('update',$contact)
                     <span class="glyphicon glyphicon-edit edit"></span>
                     <span class="glyphicon glyphicon-remove remove"></span>
+                    @endcan
                 </div>
             </td>
             <td data-source="age">
@@ -73,13 +81,18 @@
             <td data-source="company_name">
                 <div class="col-md-10 value">{{$contact->company?$contact->company->name:''}}</div>
                 <div class="col-md-2 text-right actions">
+                    @can('update',$contact)
                     <span class="glyphicon glyphicon-edit edit"></span>
                     <span class="glyphicon glyphicon-remove remove"></span>
+                    @endcan
                 </div>
             </td>
             <td class="actions-global text-center">
+                
                 <span class="glyphicon glyphicon-export export"></span>
+                @can('delete',$contact)
                 <span class="glyphicon glyphicon-trash delete"></span>
+                @endcan
             </td>
         </tr>
         @endforeach
