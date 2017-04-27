@@ -63,6 +63,10 @@ class OwnerTest extends TestCase {
             'newValue' => 'newexample@email.com'
         ];
         $response = $this->put($url, $data);
+        $this->assertDatabaseHas('contacts', [
+            'id' => $this->contact->id,
+            'email' => 'newexample@email.com'
+            ]);
         $response->assertStatus(200);
     }
 
@@ -79,6 +83,10 @@ class OwnerTest extends TestCase {
             'newValue' => null
         ];
         $response = $this->patch($url, $data);
+        $this->assertDatabaseHas('contacts', [
+            'id' => $this->contact->id,
+            'email' => null
+            ]);
         $response->assertStatus(200);
     }
 
@@ -90,9 +98,11 @@ class OwnerTest extends TestCase {
     public function deleteContact() {
         $url = '/contact/' . $this->contact->id;
         $response = $this->delete($url);
+        $this->assertDatabaseHas('contacts', [
+            'id' => $this->contact->id,
+            'deleted_at' => date('Y-m-d H:i:s')
+            ]);
         $response->assertStatus(200);
     }
-
-
 
 }

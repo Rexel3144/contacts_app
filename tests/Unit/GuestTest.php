@@ -29,9 +29,6 @@ class GuestTest extends TestCase {
      */
     public function setUp() {
         parent::setUp();
-
-//        $this->newUser = factory('App\User')->create();
-//        $this->actingAs($this->newUser);
         $this->contactOwner = factory('App\User')->create();
         $this->contact = factory('App\Contact')->create(['user_id' => $this->contactOwner->id]);
     }
@@ -80,6 +77,9 @@ class GuestTest extends TestCase {
             'password_confirmation' => 'password1',
         ];
         $response = $this->post('/register', $data);
+        $this->assertDatabaseHas('users',[
+            'email'=>'test@email.com'
+            ]);
         $response->assertRedirect('/');
     }
 
