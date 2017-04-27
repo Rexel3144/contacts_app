@@ -14,7 +14,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         'App\Model' => 'App\Policies\ModelPolicy',
-        'App\Contact' => 'App\Policies\ContactPolicy'
+        'App\Contact' => 'App\Policies\ContactPolicy',
     ];
 
     /**
@@ -25,7 +25,10 @@ class AuthServiceProvider extends ServiceProvider
     public function boot(Gate $gate)
     {
         $this->registerPolicies();
-
+        
+//        $gate->define('export', function($user,$contact){
+//            return $user->id == $contact->user_id;
+//        });
 
     }
 }
