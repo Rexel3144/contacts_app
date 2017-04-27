@@ -71,7 +71,7 @@
                 </div>
             </td>
             <td data-source="company_name">
-                <div class="col-md-10 value">{{$contact->company->name}}</div>
+                <div class="col-md-10 value">{{$contact->company?$contact->company->name:''}}</div>
                 <div class="col-md-2 text-right actions">
                     <span class="glyphicon glyphicon-edit edit"></span>
                     <span class="glyphicon glyphicon-remove remove"></span>
