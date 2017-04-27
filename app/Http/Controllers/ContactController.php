@@ -19,7 +19,6 @@ class ContactController extends Controller {
      * a autorized user
      */
     public function __construct() {
-        Auth::loginUsingId(47, true);
         $this->middleware('auth');
     }
 
