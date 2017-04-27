@@ -18,6 +18,7 @@
             <th>Address</th>
             <th>Age</th>
             <th>Company</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tfoot>
@@ -28,6 +29,7 @@
             <th>Address</th>
             <th>Age</th>
             <th>Company</th>
+            <th>Actions</th>
         </tr>
     </tfoot>
     <tbody>
@@ -74,6 +76,10 @@
                     <span class="glyphicon glyphicon-edit edit"></span>
                     <span class="glyphicon glyphicon-remove remove"></span>
                 </div>
+            </td>
+            <td class="actions-global text-center">
+                <span class="glyphicon glyphicon-export export"></span>
+                <span class="glyphicon glyphicon-trash delete"></span>
             </td>
         </tr>
         @endforeach

@@ -15,13 +15,25 @@ CONTACTS
     padding-right: 0px;
 }
 
-#contacts .actions .edit,#contacts .actions .remove,#contacts .value .edit-cell .confirm{
+#contacts .actions .edit,
+#contacts .actions .remove,
+#contacts .value .edit-cell .confirm,
+#contacts .actions-global .export,
+#contacts .actions-global .delete{
     cursor: pointer;
 }
-#contacts .actions .edit:hover,#contacts .actions .remove:hover,#contacts .value .edit-cell .confirm:hover{
+#contacts .actions .edit:hover,
+#contacts .actions .remove:hover,
+#contacts .value .edit-cell .confirm:hover,
+#contacts .actions-global .export:hover,
+#contacts .actions-global .delete:hover{
     color:#B6B6B6;
 }
-#contacts .actions .edit:active,#contacts .actions .remove:active,#contacts .value .edit-cell .confirm:active{
+#contacts .actions .edit:active,
+#contacts .actions .remove:active,
+#contacts .value .edit-cell .confirm:active,
+#contacts .actions-global .export:active,
+#contacts .actions-global .delete:active{
     color:#DBDBDB;
 }
 

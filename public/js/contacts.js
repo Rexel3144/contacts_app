@@ -66,6 +66,8 @@ $(document).ready(function () {
         });
     });
 
+
+    //Edits a value of an appropriate cell
     $(document).on('click', '.edit-cell .confirm', function () {
         var editCell = $(this).closest('.edit-cell');
         var value = editCell.parent('.value');
@@ -82,6 +84,35 @@ $(document).ready(function () {
             },
             success: function () {
                 value.html(newValue);
+                openedEditForm = null;
+            }
+        });
+    });
+
+    //Removes a contact
+    $('.actions-global > .delete').on('click', function () {
+        closePriviousEdit();
+        var answer = confirm('Do you want delete this contact?');
+        if (answer === false) {
+            return false;
+        }
+        var row = $(this).closest('tr');
+//        var source = cell.data('source');
+//        var value = cell.children('.value');
+        var contactId = row.data('contact-id');
+
+//        
+//        console.log(contactId);
+        $.ajax({
+            type: "DELETE",
+            url: "/contact/" + contactId,
+            error: function (error) {
+                console.log(error);
+            },
+            success: function () {
+                row.fadeOut('800', function () {
+                    row.remove();
+                });
             }
         });
     });
