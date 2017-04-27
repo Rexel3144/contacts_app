@@ -5,13 +5,13 @@
 <h2>Using PHP 7.0.15(dont tested on another versions).</h2>
 
 <h3>For getting started, you need to install:</h3>
-1) lamp/wamp(basic on your OS)
-2) composer
-3) git
+⋅⋅⋅ lamp/wamp(basic on your OS)
+⋅⋅⋅ composer
+⋅⋅⋅ git
 
 
 <h3>Environment:</h3>
-1) LAMP you can install by following the instruction on <a href="https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mysql-php-lamp-stack-on-ubuntu-16-04">DigitalOcean</a>.
+1) LAMP you can install by following the instruction on <a href="https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mysql-php-lamp-stack-on-ubuntu-16-04">DigitalOcean</a>.<br/>
 2) WAMP you can downaload from <a href="http://www.wampserver.com/">Official site</a>.
 
 

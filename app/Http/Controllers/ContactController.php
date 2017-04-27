@@ -84,7 +84,7 @@ class ContactController extends Controller {
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing part of the specified resource.
      *
      * @param  \App\Contact  $contact
      * @param  \Illuminate\Http\Request  $request
