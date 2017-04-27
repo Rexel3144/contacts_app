@@ -5,9 +5,9 @@
 <h2>Using PHP 7.0.15(dont tested on another versions).</h2>
 
 <h3>For getting started, you need to install:</h3>
-⋅⋅⋅ lamp/wamp(basic on your OS)
-⋅⋅⋅ composer
-⋅⋅⋅ git
+1) lamp/wamp(basic on your OS)<br/>
+2) composer<br/>
+3) git<br/>
 
 
 <h3>Environment:</h3>
@@ -33,7 +33,7 @@ composer install
 5) <b>Set you database name/user/password in the .env file</b>
 6) <b>Create a db structure by using migrates via command in terminal</b><br/>
 php artisan migrate
-7) <b>Start a server via command in terminal</b>
+7) <b>Start a server via command in terminal</b><br/>
 php artisan serve
 <h2>And thats all, you can work with Contacts app.</h2>
 8)<b>But if you wanna put some dummy data in the DB use follow command</b><br/>
