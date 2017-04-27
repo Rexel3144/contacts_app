@@ -39,3 +39,9 @@ php artisan serve
 8)<b>But if you wanna put some dummy data in the DB use follow command</b><br/>
 php artisan db:seed
 
+
+<h2>Unit tests</h2>
+
+You can test this app via command in terminal<br/>
+vendor/bin/phpunit
+
