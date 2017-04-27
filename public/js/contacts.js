@@ -18,19 +18,22 @@ $(document).ready(function () {
     }
 
     //Removes a value of a cell
-    $('.actions > .remove').on('click', function () {
+    $(document).on('click', '.actions > .remove', function () {
         closePriviousEdit();
         var cell = $(this).closest('td');
         var source = cell.data('source');
         var value = cell.children('.value');
         var contactId = $(this).closest('tr').data('contact-id');
+        var data = {};
+        data[source] = null;
+        data['source'] = source;
+        data['newValue'] = null;
         $.ajax({
             type: "PATCH",
             url: "/contact/" + contactId,
-            data: {source: source,
-                newValue: null},
+            data: data,
             error: function (error) {
-                console.log(error);
+                console.log(error.responseText);
             },
             success: function () {
                 value.empty();
@@ -40,7 +43,7 @@ $(document).ready(function () {
 
 
     //Opens a edit form on an appropriate cell
-    $('.actions > .edit').on('click', function () {
+    $(document).on('click', '.actions > .edit', function () {
         closePriviousEdit();
         var cell = $(this).closest('td');
         var source = cell.data('source');
@@ -74,15 +77,19 @@ $(document).ready(function () {
         var source = editCell.data('source');
         var contactId = editCell.data('contact-id');
         var newValue = editCell.find('.edit-input > input').val();
+        var data = {};
+        data[source] = newValue;
+        data['source'] = source;
+        data['newValue'] = newValue;
         $.ajax({
             type: "PUT",
             url: "/contact/" + contactId,
-            data: {source: source,
-                newValue: newValue},
+            data: data,
             error: function (error) {
-                console.log(error);
+                console.log(error.responseText);
             },
-            success: function () {
+            success: function (data) {
+                console.log(data);
                 value.html(newValue);
                 openedEditForm = null;
             }
@@ -97,12 +104,7 @@ $(document).ready(function () {
             return false;
         }
         var row = $(this).closest('tr');
-//        var source = cell.data('source');
-//        var value = cell.children('.value');
         var contactId = row.data('contact-id');
-
-//        
-//        console.log(contactId);
         $.ajax({
             type: "DELETE",
             url: "/contact/" + contactId,
