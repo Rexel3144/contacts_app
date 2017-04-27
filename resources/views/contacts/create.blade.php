@@ -48,13 +48,13 @@
                     @endif
                 </div>
             </div>
-            <div class="form-group{{ $errors->has('company') ? ' has-error' : '' }}">
-                <label for="company" class="col-md-4 control-label">Company</label>
+            <div class="form-group{{ $errors->has('company_name') ? ' has-error' : '' }}">
+                <label for="company_name" class="col-md-4 control-label">Company</label>
                 <div class="col-md-6">
-                    <input id="company" type="text" class="form-control" name="company" value="{{ old('company') }}">
-                    @if ($errors->has('company'))
+                    <input id="company_name" type="text" class="form-control" name="company_name" value="{{ old('company_name') }}">
+                    @if ($errors->has('company_name'))
                     <span class="help-block">
-                        <strong>{{ $errors->first('company') }}</strong>
+                        <strong>{{ $errors->first('company_name') }}</strong>
                     </span>
                     @endif
                 </div>
