@@ -88,9 +88,9 @@
                 </div>
             </td>
             <td class="actions-global text-center">
-                @can('export',$contact)
-                <a href='/export/vCard/{{$contact->id}}'><span class="glyphicon glyphicon-export export"></span> </a>
-                @endcan
+                <a href='/export/vCard/{{$contact->id}}'>
+                    <span class="glyphicon glyphicon-export export"></span>
+                </a>
                 @can('delete',$contact)
                 <span class="glyphicon glyphicon-trash delete"></span>
                 @endcan
