@@ -5,11 +5,12 @@ namespace App\Http\Controllers;
 use App\Contact;
 use App\Company;
 use Illuminate\Http\Request;
+use App\Http\Requests\ContactRequest;
 use Illuminate\Support\Facades\Auth;
+
 //use Carbon\Carbon;
-class ContactController extends Controller
-{
-    
+class ContactController extends Controller {
+
     /**
      * Using middleware auth,
      * which provides access
@@ -17,20 +18,18 @@ class ContactController extends Controller
      * a autorized user
      */
     public function __construct() {
-        Auth::loginUsingId(47,true);
+        Auth::loginUsingId(47, true);
         $this->middleware('auth');
     }
-    
-    
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index() {
         $contacts = Auth::user()->contacts;
-        for($i = 0; $i<count($contacts);$i++){
+        for ($i = 0; $i < count($contacts); $i++) {
             //need remake by using carbon
             $contacts[$i]->age = date('Y') - date('Y', strtotime($contacts[$i]->birthday));
         }
@@ -42,26 +41,25 @@ class ContactController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create() {
         return view('contacts.create');
     }
-    
+
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {   
+    public function store(ContactRequest $request) {
         $contact = $request->all();
-        if (isset($contact['company'])){
-            $contact['company_id']= Company::findIdByNameOrCreate($contact['company']);
+        if (isset($contact['company_name'])) {
+            $contact['company_id'] = Company::findIdByNameOrCreate($contact['company_name']);
         }
-        
+
         Auth::user()->contacts()->create($contact);
-        
+
+        return redirect("/");
     }
 
     /**
@@ -70,8 +68,7 @@ class ContactController extends Controller
      * @param  \App\Contact  $contact
      * @return \Illuminate\Http\Response
      */
-    public function show(Contact $contact)
-    {
+    public function show(Contact $contact) {
         //
     }
 
@@ -81,11 +78,10 @@ class ContactController extends Controller
      * @param  \App\Contact  $contact
      * @return \Illuminate\Http\Response
      */
-    public function edit(Contact $contact)
-    {
+    public function edit(Contact $contact) {
         //
     }
-    
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -93,14 +89,12 @@ class ContactController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function editPart(Request $request,Contact $contact)
-    {   
+    public function editPart(Request $request, Contact $contact) {
         $id = $contact->id;
         $source = $request->source;
         $value = $request->value;
-        return view("contacts.parts.{$source}", compact('value','source','id'));
+        return view("contacts.parts.{$source}", compact('value', 'source', 'id'));
     }
-    
 
     /**
      * Update the specified resource in storage.
@@ -109,12 +103,21 @@ class ContactController extends Controller
      * @param  \App\Contact  $contact
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Contact $contact)
-    {
+    public function update(ContactRequest $request, Contact $contact) {
         $source = $request->source;
-        $contact->$source = $request->newValue;
+        $newValue = $request->newValue;
+        
+        //need remake this magic
+        if ($source == 'company_name') {
+            if (!is_null($newValue)) {
+                $newValue = Company::findIdByNameOrCreate($newValue);
+            } 
+            $source = 'company_id';
+        }
+
+        $contact->$source = $newValue;
         $contact->save();
-        return response('Success',200);
+        return response('Success', 200);
     }
 
     /**
@@ -123,9 +126,9 @@ class ContactController extends Controller
      * @param  \App\Contact  $contact
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Contact $contact)
-    {
-       $contact->delete();
-       return response('Success',200);
+    public function destroy(Contact $contact) {
+        $contact->delete();
+        return response('Success', 200);
     }
+
 }
