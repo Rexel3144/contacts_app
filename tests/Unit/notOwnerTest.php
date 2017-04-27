@@ -31,7 +31,8 @@ class notOwnerTest extends TestCase {
     protected $notAContactOwner;
 
     /**
-     * Set up a user and his contact
+     * Set up a user and his contact,
+     * and an user which trying to manipulate contact which has an owner
      */
     public function setUp() {
         parent::setUp();
