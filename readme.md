@@ -25,7 +25,7 @@ Download git from <a href="https://git-scm.com/downloads">official site</a>.
 <h2>Now when you are ready to work follow please next instructions:</h2>
 
 1) <b>Clone the project via command in terminal</b><br/>
-git clone https://github.com/valerahorsharik/Contacts.git
+git clone https://github.com/Rexel3144/contacts_app
 2) <b>Enter in the project directory</b>
 3) <b>Install composer dependencies via command in terminal</b><br/>
 composer install
