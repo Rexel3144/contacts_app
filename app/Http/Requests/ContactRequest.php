@@ -26,7 +26,7 @@ class ContactRequest extends FormRequest
         return [
             'name' => 'min:3',
             'email' => 'nullable|email|unique:contacts',
-            'phone' => 'min:7',
+            'phone' => 'min:7|regex:/\+?(\w\s?\-?)+/',
             'address' => 'nullable|min:10',
             'birthday' => 'nullable|date',
             'company_name' => 'nullable|min:3'
